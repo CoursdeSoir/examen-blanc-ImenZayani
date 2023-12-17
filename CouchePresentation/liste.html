@@ -1,0 +1,40 @@
+<!-- Dans le fichier liste.html de CouchePresentation/projet -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des projets</title>
+</head>
+<body>
+    <h2 style="text-align: center;">Liste des projets</h2>
+    <table border="1" style="margin: auto;">
+        <tr>
+            <th>ID</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Effectif</th>
+            <th>Besoin</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
+        {% for projet in projets %}
+        <tr>
+            <td>{{ projet.id }}</td>
+            <td>{{ projet.date_debut }}</td>
+            <td>{{ projet.date_fin }}</td>
+            <td>{{ projet.effectif }}</td>
+            <td>{{ projet.besoin }}</td>
+            <td>{{ projet.type }}</td>
+            <td>
+                {% if projet.besoin > 0 %}
+                    <a href="{% url 'adherer_projet' projet.id %}" style="color: blue; text-decoration: underline;">Adhérer</a>
+                {% else %}
+                    Plus de places disponibles
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
